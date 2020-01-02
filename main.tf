@@ -159,11 +159,6 @@ resource "google_container_cluster" "cluster" {
 
   # The configuration for addons supported by GKE.
   addons_config {
-    # The status of the Kubernetes Dashboard add-on, which controls whether
-    # the Kubernetes Dashboard is enabled for this cluster. It is enabled by default.
-    kubernetes_dashboard {
-      disabled = true
-    }
 
     http_load_balancing {
       disabled = var.http_load_balancing_disabled
@@ -180,20 +175,6 @@ resource "google_container_cluster" "cluster" {
 
   network    = local.vpc_network_name
   subnetwork = local.vpc_subnetwork_name
-
-  # Configuration for cluster IP allocation. As of now, only pre-allocated
-  # subnetworks (custom type with secondary ranges) are supported. This will
-  # activate IP aliases.
-  ip_allocation_policy {
-    # Whether alias IPs will be used for pod IPs in the cluster. Defaults to
-    # true if the ip_allocation_policy block is defined, and to the API
-    # default otherwise. Prior to June 17th 2019, the default on the API is
-    # false; afterwards, it's true.
-    use_ip_aliases = true
-
-    cluster_secondary_range_name  = var.cluster_secondary_range_name
-    services_secondary_range_name = var.services_secondary_range_name
-  }
 
   # It's not possible to create a cluster with no node pool defined, but we
   # want to only use separately managed node pools. So we create the smallest
