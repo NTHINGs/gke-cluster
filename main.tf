@@ -16,7 +16,7 @@ terraform {
   required_version = "~> 0.12"
 
   backend "remote" {
-    hostname = "app.terraform.io"
+    hostname     = "app.terraform.io"
     organization = "tecnoly"
 
     workspaces {
@@ -35,9 +35,8 @@ locals {
 
 # https://www.terraform.io/docs/providers/google/index.html
 provider "google" {
-  version = "2.5.1"
-  project = var.gcp_project_id
-  region  = local.gcp_region
+  project     = var.gcp_project_id
+  region      = local.gcp_region
   credentials = base64decode(var.gcp_credentials)
 }
 
@@ -51,7 +50,7 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   name = var.vpc_subnetwork_name
 
   ip_cidr_range = var.vpc_subnetwork_cidr_range
-  network = var.vpc_network_name
+  network       = var.vpc_network_name
   secondary_ip_range {
     range_name    = var.cluster_secondary_range_name
     ip_cidr_range = var.cluster_secondary_range_cidr
