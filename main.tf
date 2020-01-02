@@ -176,6 +176,14 @@ resource "google_container_cluster" "cluster" {
   network    = local.vpc_network_name
   subnetwork = local.vpc_subnetwork_name
 
+  # Configuration for cluster IP allocation. As of now, only pre-allocated
+  # subnetworks (custom type with secondary ranges) are supported. This will
+  # activate IP aliases.
+  ip_allocation_policy {
+    cluster_secondary_range_name  = var.cluster_secondary_range_name
+    services_secondary_range_name = var.services_secondary_range_name
+  }
+
   # It's not possible to create a cluster with no node pool defined, but we
   # want to only use separately managed node pools. So we create the smallest
   # possible default node pool and immediately delete it.
