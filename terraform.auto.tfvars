@@ -1,6 +1,6 @@
 cluster_name = "personal"
 
-gcp_location = "us-central1"
+gcp_location = "us-central1-a"
 
 daily_maintenance_window_start_time = "03:00"
 
