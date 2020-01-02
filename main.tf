@@ -29,8 +29,8 @@ terraform {
 # times within a module. They are used here to determine the GCP region from
 # the given location, which can be either a region or zone.
 locals {
-  gcp_location_parts = split("-", var.gcp_location)
-  gcp_region         = format("%s-%s", local.gcp_location_parts[0], local.gcp_location_parts[1])
+  gcp_location_parts  = split("-", var.gcp_location)
+  gcp_region          = format("%s-%s", local.gcp_location_parts[0], local.gcp_location_parts[1])
   vpc_network_name    = google_compute_network.vpc_network.name
   vpc_subnetwork_name = google_compute_subnetwork.vpc_subnetwork.name
 }
