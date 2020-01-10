@@ -153,7 +153,7 @@ resource "google_container_cluster" "cluster" {
 
     # Whether client certificate authorization is enabled for this cluster.
     client_certificate_config {
-      issue_client_certificate = false
+      issue_client_certificate = true
     }
   }
 
