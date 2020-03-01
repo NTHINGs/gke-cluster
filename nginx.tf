@@ -30,7 +30,7 @@ data "helm_repository" "stable" {
 resource "helm_release" "nginx_ingress" {
   name          = "nginx-ingress"
   repository    = data.helm_repository.stable.metadata[0].name
-  chart         = "stable/nginx-ingress"
+  chart         = "nginx-ingress"
   version       = "latest"
   namespace     = kubernetes_namespace.nginx_ingress.id
 
