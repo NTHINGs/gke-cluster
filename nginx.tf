@@ -22,9 +22,14 @@ provider "helm" {
   }
 }
 
+data "helm_repository" "stable" {
+  name = "stable"
+  url  = "https://kubernetes-charts.storage.googleapis.com"
+}
+
 resource "helm_release" "nginx_ingress" {
   name          = "nginx-ingress"
-  repository    = "https://kubernetes-charts.storage.googleapis.com"
+  repository    = data.helm_repository.stable.metadata[0].name
   chart         = "stable/nginx-ingress"
   namespace     = kubernetes_namespace.nginx_ingress.id
 
