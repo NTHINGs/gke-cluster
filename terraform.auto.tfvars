@@ -7,9 +7,9 @@ daily_maintenance_window_start_time = "03:00"
 node_pools = [
   {
     name                       = "default"
-    initial_node_count         = 1
-    autoscaling_min_node_count = 1
-    autoscaling_max_node_count = 3
+    initial_node_count         = 3
+    autoscaling_min_node_count = 3
+    autoscaling_max_node_count = 5
     management_auto_upgrade    = true
     management_auto_repair     = true
     node_config_machine_type   = "n1-standard-1"
